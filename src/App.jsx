@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
-import AllTopics from "./pages/allTopics";
-// import UserButton from "./components/userbutton";
-// import Header from "./components/header";
-// import SearchBar from "./components/searchbar";
+import AllArticles from "./pages/allArticlesPage";
+
+import SingleArticlePage from "./pages/singleArticlePage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,7 +12,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="all-topics" element={<AllTopics />} />
+        <Route path="/all-articles" element={<AllArticles />} />
+        <Route path="/article/:article_id" element={<SingleArticlePage />} />
       </Routes>
     </>
   );

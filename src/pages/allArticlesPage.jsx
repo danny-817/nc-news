@@ -3,15 +3,17 @@ import Header from "../components/header";
 import SearchBar from "../components/searchbar";
 import Body from "../components/body";
 
-const AllTopics = () => {
+const AllArticles = () => {
   return (
     <>
       <UserButton />
       <Header />
-      <SearchBar />
-      <Body />
+      <main>
+        <SearchBar />
+        <Body />
+      </main>
     </>
   );
 };
 
-export default AllTopics;
+export default AllArticles;
