@@ -1,6 +1,16 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+} */
+
+.user-button {
+  border-style: solid;
+}
+
+#main-heading {
+  font-size: 60px;
+  text-align: center;
+  letter-spacing: 15px;
 }
