@@ -7,7 +7,6 @@ const UserButton = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            console.log("user button click");
           }}
         >
           Change User
