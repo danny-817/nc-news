@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [topics, setTopics] = useState([]);
@@ -18,7 +19,9 @@ const SearchBar = () => {
         <h2>View by topic:</h2>
         <ul className="topics-buttons">
           <li>
-            <button className="topic-button">All topics</button>
+            <Link to="/all-articles">
+              <button className="topic-button">All topics</button>
+            </Link>
           </li>
 
           {topics.map((topic) => {
@@ -35,15 +38,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-
-// const [query, setQuery] = useState("");
-//   useEffect(() => {
-//     axios
-//       .get("https://nc-marketplace-sem-3.onrender.com/api/items", {
-//         params: { category_name: query },
-//       })
-//       .then((response) => {
-//         const { items } = response.data;
-//         setItemsByCategory(items);
-//       });
-//   }, [query]);
