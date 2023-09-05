@@ -181,3 +181,6 @@ a:active {
 .comment-card > .comment {
   font-size: 1.2em;
 }
+.inactive {
+  pointer-events: none;
+}

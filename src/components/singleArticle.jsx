@@ -1,32 +1,22 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { increaseVote, decreaseVote } from "../utilities/util_funcs";
+import { getSingleArticle, getArticleComments } from "../utilities/api";
+import { ArticleComments } from "./comments";
 
 const SingleArticle = () => {
   const [article, setArticle] = useState({});
-  const { article_id } = useParams();
   const [isLoading, setisLoading] = useState(false);
   const [comments, setComments] = useState([]);
+  const [articleVotes, setArticleVotes] = useState(0);
+  const [hasVoted, setHasVoted] = useState(false);
+  const { article_id } = useParams();
 
   useEffect(() => {
-    setisLoading(true);
-    axios
-      .get(`https://nc-news-api-88m2.onrender.com/api/articles/${article_id}`)
+    getSingleArticle(article_id, setisLoading, setArticle, setArticleVotes);
 
-      .then(({ data }) => {
-        setArticle(data.article);
-        setisLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    axios
-      .get(
-        `https://nc-news-api-88m2.onrender.com/api/articles/${article_id}/comments`
-      )
-      .then(({ data }) => {
-        setComments(data.comments);
-      });
+    getArticleComments(article_id, setComments);
   }, []);
 
   if (isLoading) return <h1>Fetching Article, Please Wait</h1>;
@@ -38,26 +28,38 @@ const SingleArticle = () => {
 
         <h3 className="article-detail">Author: {article.author}</h3>
         <h3 className="article-detail">Created at: {article.created_at}</h3>
-        <h3 className="article-detail">Votes: {article.votes}</h3>
+        <div>
+          <h3 className="article-detail">Votes: {articleVotes}</h3>
+          <button
+            className={hasVoted ? "inactive" : "active"}
+            onClick={() => {
+              if (!hasVoted) {
+                increaseVote(article_id);
+                setArticleVotes(articleVotes + 1);
+                setHasVoted(true);
+              }
+            }}
+          >
+            {hasVoted ? "Thanks!" : "Up Vote"}
+          </button>
+          <button
+            className={!hasVoted ? "inactive" : "active"}
+            onClick={() => {
+              if (hasVoted) {
+                decreaseVote(article_id);
+                setArticleVotes(articleVotes - 1);
+                setHasVoted(false);
+              }
+            }}
+          >
+            Remove Your Vote
+          </button>
+        </div>
       </section>
 
       <img className="article_image" src={article.article_img_url} alt="" />
       <article>{article.body}</article>
-      <div>
-        <h1>Comments</h1>
-        <ul>
-          {comments.map((comment) => {
-            return (
-              <li className="comment-card" key={comment.comment_id}>
-                <p className="comment">{comment.body}</p>
-                <p>{comment.author}</p>
-                <p>Votes: {comment.votes}</p>
-                <p>{comment.created_at}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <ArticleComments comments={comments} />
     </div>
   );
 };

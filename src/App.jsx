@@ -7,8 +7,6 @@ import AllArticles from "./pages/allArticlesPage";
 import SingleArticlePage from "./pages/singleArticlePage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Routes>
