@@ -170,3 +170,14 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+.comment-card {
+  background-color: #9fb4f24e;
+  border-style: solid;
+  border-width: 1px;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+}
+.comment-card > .comment {
+  font-size: 1.2em;
+}

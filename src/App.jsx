@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/all-articles" element={<AllArticles />} />
+        <Route path="/" element={<AllArticles />} />
         <Route path="/article/:article_id" element={<SingleArticlePage />} />
       </Routes>
     </>
