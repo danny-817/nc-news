@@ -22,8 +22,8 @@ const Body = () => {
             <Link to={`/article/${article.article_id}`}>
               <button className="article-card">
                 <div>
-                  <p>{article.title}</p>
-                  <p>Votes: {article.votes}</p>
+                  <h2>{article.title}</h2>
+                  <h3>Votes: {article.votes}</h3>
                 </div>
 
                 <img
