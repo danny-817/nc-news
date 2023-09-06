@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
+import { getTopics } from "../utilities/api";
 
 const SearchBar = () => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://nc-news-api-88m2.onrender.com/api/topics")
-      .then(({ data }) => {
-        setTopics(data);
-      });
+    getTopics(setTopics);
   }, []);
 
   return (

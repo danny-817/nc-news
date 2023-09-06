@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { increaseVote, decreaseVote } from "../utilities/api_util_funcs";
@@ -59,7 +58,7 @@ const SingleArticle = () => {
 
       <img className="article_image" src={article.article_img_url} alt="" />
       <article>{article.body}</article>
-      <ArticleComments comments={comments} />
+      <ArticleComments comments={comments} article_id={article_id} />
     </div>
   );
 };

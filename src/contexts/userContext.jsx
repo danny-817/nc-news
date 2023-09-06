@@ -2,10 +2,10 @@ import { createContext, useState } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [activeUser, setActiveUser] = useState({ username: null });
-  console.log(children, "children");
+  const [activeUser, setActiveUser] = useState();
+
   return (
-    <UserContext.Provider value={{ activeuser: "dan" }}>
+    <UserContext.Provider value={{ activeUser, setActiveUser }}>
       {children}
     </UserContext.Provider>
   );

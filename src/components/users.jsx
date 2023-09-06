@@ -5,12 +5,11 @@ import { UserContext } from "../contexts/userContext";
 
 export const Users = () => {
   const [usersArray, setUsersArray] = useState([]);
-  console.log(UserContext, "context");
 
+  const { activeUser, setActiveUser } = useContext(UserContext);
   useEffect(() => {
     getUsers(setUsersArray);
   }, []);
-  const {}
 
   return (
     <div>

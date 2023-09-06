@@ -49,3 +49,25 @@ export const getUsers = (setUsersArray) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const getTopics = (setTopics) => {
+  axios
+    .get("https://nc-news-api-88m2.onrender.com/api/topics")
+    .then(({ data }) => {
+      setTopics(data);
+    });
+};
+
+export const submitComment = (newComment, article_id, activeUser) => {
+  console.log(newComment, article_id, activeUser, "submit comment");
+  axios
+    .post(
+      `https://nc-news-api-88m2.onrender.com/api/articles/${article_id}/comments`,
+      { body: newComment, username: activeUser }
+    )
+    .then((data) => {
+      console.log(data);
+      console.log("logged");
+    })
+    .catch((error) => console.error(error.response.data));
+};
