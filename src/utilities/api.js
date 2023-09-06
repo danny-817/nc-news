@@ -40,3 +40,12 @@ export const getArticleComments = (article_id, setComments) => {
       setComments(data.comments);
     });
 };
+
+export const getUsers = (setUsersArray) => {
+  axios
+    .get("https://nc-news-api-88m2.onrender.com/api/users")
+    .then(({ data }) => {
+      setUsersArray(data.users);
+    })
+    .catch((err) => console.log(err));
+};

@@ -19,7 +19,7 @@ const SearchBar = () => {
         <h2>View by topic:</h2>
         <ul className="topics-buttons">
           <li>
-            <Link to="/">
+            <Link to="/articles">
               <button className="topic-button">All topics</button>
             </Link>
           </li>
