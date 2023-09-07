@@ -3,7 +3,7 @@ import Header from "../components/header";
 import SearchBar from "../components/searchbar";
 import FilteredArticles from "../components/filtered_articles";
 
-const CodingArticles = () => {
+const FilteredTopicPage = () => {
   return (
     <>
       <UserButton />
@@ -16,4 +16,4 @@ const CodingArticles = () => {
   );
 };
 
-export default CodingArticles;
+export default FilteredTopicPage;

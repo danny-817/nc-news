@@ -1,47 +1,46 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllArticles } from "../utilities/api";
-import { useParams } from "react-router-dom";
 
 const FilteredArticles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setisLoading] = useState(false);
-
+  const url = window.location.href;
+  const topic = url.substring(url.lastIndexOf("/") + 1);
   useEffect(() => {
     getAllArticles(setisLoading, setArticles);
   }, []);
 
-  console.log(articles);
   const filteredArray = articles.filter((article) => {
-    // console.log(article);
-    article.topic === "coding";
+    return article.topic === `${topic}`;
   });
-
-  console.log(filteredArray, "filtered");
 
   if (isLoading) return <h1>Fetching Articles, Please Wait</h1>;
   return (
-    <ul>
-      {articles.map((article) => {
-        return (
-          <li key={article.article_id}>
-            <Link to={`/article/${article.article_id}`}>
-              <button className="article-card">
-                <div>
-                  <h2>{article.title}</h2>
-                  <h3>Votes: {article.votes}</h3>
-                </div>
+    <div>
+      <h1 className="filter_title">Showing all {`${topic}`} articles</h1>
+      <ul>
+        {filteredArray.map((article) => {
+          return (
+            <li key={article.article_id}>
+              <Link to={`/article/${article.article_id}`}>
+                <button className="article-card">
+                  <div>
+                    <h2>{article.title}</h2>
+                    <h3>Votes: {article.votes}</h3>
+                  </div>
 
-                <img
-                  className="article-card-thumbnail"
-                  src={article.article_img_url}
-                ></img>
-              </button>
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
+                  <img
+                    className="article-card-thumbnail"
+                    src={article.article_img_url}
+                  ></img>
+                </button>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 
