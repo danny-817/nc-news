@@ -10,14 +10,15 @@ const FilteredArticles = () => {
   useEffect(() => {
     getAllArticles(setisLoading, setArticles);
   }, []);
-  // setArticles(
-  //   articles.filter((article) => {
-  //     console.log();
-  //     return article.topic === "coding";
-  //   })
-  //);
 
-  console.log(articles, "articles");
+  console.log(articles);
+  const filteredArray = articles.filter((article) => {
+    // console.log(article);
+    article.topic === "coding";
+  });
+
+  console.log(filteredArray, "filtered");
+
   if (isLoading) return <h1>Fetching Articles, Please Wait</h1>;
   return (
     <ul>
