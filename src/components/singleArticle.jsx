@@ -58,7 +58,12 @@ const SingleArticle = () => {
 
       <img className="article_image" src={article.article_img_url} alt="" />
       <article>{article.body}</article>
-      <ArticleComments comments={comments} article_id={article_id} />
+      <ArticleComments
+        comments={comments}
+        setComments={setComments}
+        set
+        article_id={article_id}
+      />
     </div>
   );
 };

@@ -5,12 +5,12 @@ import { UserContext } from "../contexts/userContext";
 
 export const Users = () => {
   const [usersArray, setUsersArray] = useState([]);
-
+  const [isLoading, setisLoading] = useState(false);
   const { activeUser, setActiveUser } = useContext(UserContext);
   useEffect(() => {
-    getUsers(setUsersArray);
+    getUsers(setUsersArray, setisLoading);
   }, []);
-
+  if (isLoading) return <h1>Fetching the users list, please wait!</h1>;
   return (
     <div>
       <ul>

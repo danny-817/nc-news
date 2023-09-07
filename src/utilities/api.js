@@ -41,11 +41,13 @@ export const getArticleComments = (article_id, setComments) => {
     });
 };
 
-export const getUsers = (setUsersArray) => {
+export const getUsers = (setUsersArraym, setisLoading) => {
+  setisLoading(true);
   axios
     .get("https://nc-news-api-88m2.onrender.com/api/users")
     .then(({ data }) => {
       setUsersArray(data.users);
+      setisLoading(false);
     })
     .catch((err) => console.log(err));
 };
@@ -60,14 +62,14 @@ export const getTopics = (setTopics) => {
 
 export const submitComment = (newComment, article_id, activeUser) => {
   console.log(newComment, article_id, activeUser, "submit comment");
-  axios
+
+  return axios
     .post(
       `https://nc-news-api-88m2.onrender.com/api/articles/${article_id}/comments`,
       { body: newComment, username: activeUser }
     )
     .then((data) => {
       console.log(data);
-      console.log("logged");
     })
-    .catch((error) => console.error(error.response.data));
+    .catch((error) => console.log(error));
 };
