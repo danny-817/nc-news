@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllArticles } from "../utilities/api";
+import { useParams } from "react-router-dom";
 
-const Body = () => {
+const FilteredArticles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
     getAllArticles(setisLoading, setArticles);
   }, []);
+  // setArticles(
+  //   articles.filter((article) => {
+  //     console.log();
+  //     return article.topic === "coding";
+  //   })
+  //);
+
+  console.log(articles, "articles");
   if (isLoading) return <h1>Fetching Articles, Please Wait</h1>;
   return (
     <ul>
@@ -35,4 +44,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default FilteredArticles;

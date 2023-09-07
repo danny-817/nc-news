@@ -41,7 +41,7 @@ export const getArticleComments = (article_id, setComments) => {
     });
 };
 
-export const getUsers = (setUsersArraym, setisLoading) => {
+export const getUsers = (setUsersArray, setisLoading) => {
   setisLoading(true);
   axios
     .get("https://nc-news-api-88m2.onrender.com/api/users")

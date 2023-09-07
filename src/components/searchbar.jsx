@@ -24,7 +24,9 @@ const SearchBar = () => {
           {topics.map((topic) => {
             return (
               <li key={topic.slug}>
-                <button className="topic-button">{topic.slug}</button>
+                <Link to={`/articles/${topic.slug}`}>
+                  <button className="topic-button">{topic.slug}</button>
+                </Link>
               </li>
             );
           })}
