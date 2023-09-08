@@ -41,7 +41,7 @@ export const getArticleComments = (article_id, setComments) => {
     });
 };
 
-export const getUsers = (setUsersArraym, setisLoading) => {
+export const getUsers = (setUsersArray, setisLoading) => {
   setisLoading(true);
   axios
     .get("https://nc-news-api-88m2.onrender.com/api/users")
@@ -60,16 +60,35 @@ export const getTopics = (setTopics) => {
     });
 };
 
-export const submitComment = (newComment, article_id, activeUser) => {
+export const submitComment = (
+  newComment,
+  article_id,
+  activeUser,
+  setSubmitted,
+  setPlaceHolderText,
+  setIsSubmitting
+) => {
   console.log(newComment, article_id, activeUser, "submit comment");
-
+  setIsSubmitting(true);
+  setPlaceHolderText("submitting...");
   return axios
     .post(
       `https://nc-news-api-88m2.onrender.com/api/articles/${article_id}/comments`,
       { body: newComment, username: activeUser }
     )
     .then((data) => {
-      console.log(data);
+      console.log(data, "data");
+      if (data.status === 201) {
+        setSubmitted(true);
+        setIsSubmitting(false);
+        setPlaceHolderText("add a comment...");
+      }
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      if (error) {
+        setPlaceHolderText(
+          "a problem occured and your comment was not submitted at this time"
+        );
+      }
+    });
 };
