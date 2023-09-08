@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getTopics } from "../utilities/api";
 
-const SearchBar = ({ filterBy, setFilterBy }) => {
+const SearchBar = ({ sortBy, setSortBy }) => {
   const [topics, setTopics] = useState([]);
 
   const changeHandler = (e) => {
-    setFilterBy(e.target.value);
+    setSortBy(e.target.value);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const SearchBar = ({ filterBy, setFilterBy }) => {
                 id="radio1"
                 type="radio"
                 name="sortby"
-                checked={filterBy === "Date"}
+                checked={sortBy === "Date"}
                 onChange={changeHandler}
               />
               <label htmlFor="radio1">Date</label>
@@ -56,7 +56,7 @@ const SearchBar = ({ filterBy, setFilterBy }) => {
                 id="radio2"
                 type="radio"
                 name="sortby"
-                checked={filterBy === "Comment Count"}
+                checked={sortBy === "Comment Count"}
                 onChange={changeHandler}
               />
               <label htmlFor="radio2">Comment Count</label>
@@ -68,7 +68,7 @@ const SearchBar = ({ filterBy, setFilterBy }) => {
                 id="radio3"
                 type="radio"
                 name="sortby"
-                checked={filterBy === "Votes"}
+                checked={sortBy === "Votes"}
                 onChange={changeHandler}
               />
               <label htmlFor="radio3">Votes</label>

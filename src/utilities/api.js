@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export const getAllArticles = (setisLoading, setArticles) => {
+export const getAllArticles = (setisLoading, setArticles, sortBy) => {
+  console.log(sortBy);
   setisLoading(true);
   axios
     .get("https://nc-news-api-88m2.onrender.com/api/articles")

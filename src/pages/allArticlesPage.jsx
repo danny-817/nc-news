@@ -5,14 +5,14 @@ import Body from "../components/body";
 import { useState } from "react";
 
 const AllArticles = () => {
-  const [filterBy, setFilterBy] = useState("Date");
+  const [sortBy, setSortBy] = useState("Date");
   return (
     <>
       <UserButton />
       <Header />
       <main>
-        <SearchBar setFilterBy={setFilterBy} filterBy={filterBy} />
-        <Body filterBy={filterBy} />
+        <SearchBar setSortBy={setSortBy} sortBy={sortBy} />
+        <Body sortBy={sortBy} />
       </main>
     </>
   );

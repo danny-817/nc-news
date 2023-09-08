@@ -2,14 +2,18 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllArticles } from "../utilities/api";
 
-const Body = () => {
+const Body = ({ sortBy }) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setisLoading] = useState(false);
 
   useEffect(() => {
-    getAllArticles(setisLoading, setArticles);
-  }, []);
+    getAllArticles(setisLoading, setArticles, sortBy);
+  }, [sortBy]);
   if (isLoading) return <h1>Fetching Articles, Please Wait</h1>;
+  articles.sort((a, b) => {
+    a.comments - b.comments;
+  });
+  console.log(articles);
   return (
     <div>
       <h1>Showing all articles</h1>
