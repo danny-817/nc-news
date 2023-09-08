@@ -6,6 +6,8 @@ export const ArticleComments = ({ comments, setComments, article_id }) => {
   const [newComment, setNewComment] = useState("");
   const { activeUser } = useContext(UserContext);
   const [placeholderText, setPlaceHoldertext] = useState("add a comment...");
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleChange = (e) => {
     setNewComment(e.target.value);
   };
@@ -18,7 +20,15 @@ export const ArticleComments = ({ comments, setComments, article_id }) => {
       setPlaceHoldertext("Please enter a comment");
     } else if (newComment !== "" && activeUser) {
       setComments([{ body: newComment, author: activeUser }, ...comments]);
-      submitComment(newComment, article_id, activeUser);
+      submitComment(
+        newComment,
+        article_id,
+        activeUser,
+        setSubmitted,
+        setPlaceHoldertext,
+        setIsSubmitting
+      );
+      setNewComment("");
     }
   };
 
@@ -35,7 +45,13 @@ export const ArticleComments = ({ comments, setComments, article_id }) => {
             value={newComment}
             onChange={handleChange}
           ></textarea>
-          <button onClick={handleSubmit}>submit</button>
+          <button
+            className={isSubmitting ? "inactive" : "true"}
+            id="submit_button"
+            onClick={handleSubmit}
+          >
+            {submitted ? "comment submitted!" : "submit"}
+          </button>
         </label>
       </form>
       <h1>Comments</h1>
